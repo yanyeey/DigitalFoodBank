@@ -1,0 +1,175 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="FYP_DFB.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Digital Food Bank</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="Customised_Design/CSS/bootstrap.min.css">  
+    <link rel="stylesheet" href="Customised_Design/CSS/animated.css"> 
+    <link rel="stylesheet" href="Customised_Design/CSS/fontawesome.css">   
+    <link rel="stylesheet" href="Customised_Design/CSS/owl.css">   
+    <link rel="stylesheet" href="Customised_Design/CSS/templatemo-digimedia-v1.css">   
+
+</head>
+
+<body>
+    <form runat="server">
+        <!-- Header Start-->
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- Logo Start -->
+                            <a href="home.aspx" class="logo">
+                                <img src="Customised_Design/Images/logo.png" alt="">
+                            </a>
+                            <!-- Logo End -->
+                            <!-- Navigation Bar Start -->
+                            <ul class="nav">
+                              <li class="scroll-to-section"><a href="about.aspx">About Us</a></li>
+                              <li class="scroll-to-section"><a href="inventory.aspx">Inventory</a></li>
+                              <li class="scroll-to-section dropdown">
+                                  <a href="home.aspx" onclick="return false;">Forms</a>
+                                  <ul class="dropdown-menu" id="dropdown-menu">
+                                      <li id="foodDonationMenuItem"><a href="food_donation_form.aspx">Food Donation Form</a></li>
+                                      <hr class="dropdown-menu-item-line">
+                                      <li><a href="food_assistance_form.aspx">Food Assistance Form</a></li>
+                                      <hr class="dropdown-menu-item-line">
+                                      <li><a href="volunteer_form.aspx">Volunteer Registration Form</a></li>
+                                      <li style="margin-bottom: 1rem;"></li>
+                                  </ul>
+                              </li>
+                                 <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                      if ("<%= Session["member_type"] %>" === "recipient") {
+                                           // Remove the "Food Donation Form" menu item
+                                         document.getElementById("foodDonationMenuItem").remove();
+                                      }
+                                    });
+                                </script>                  
+                              <li class="scroll-to-section"><a href="faqs.aspx">FAQs</a></li>
+                              <li class="scroll-to-section"><a href="contact.aspx">Contact Us</a></li>
+                              <li class="scroll-to-section"><asp:LinkButton ID="login" runat="server" Text="Login / Sign Up" OnClick="login_Click"></asp:LinkButton></li>
+                              <li class="scroll-to-section"><asp:LinkButton ID="profile" runat="server" Text="Profile" OnClick="profile_Click" Visible="False"></asp:LinkButton></li>
+                              <li class="scroll-to-section"><asp:LinkButton ID="logout" runat="server" Text="Logout" OnClick="logout_Click" Visible="False"></asp:LinkButton></li>
+                              <li class="scroll-to-section">
+                                  <div class="border-first-button">
+                                      <a id="donateLink" runat="server" href="donate.aspx">Donate Now</a>
+                                  </div>
+                              </li>                            
+                            </ul>        
+                            <!-- Navigational Bar End -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header End -->
+
+        <asp:ContentPlaceHolder ID="MainContent1" runat="server"> </asp:ContentPlaceHolder>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent2" runat="server"> </asp:ContentPlaceHolder>
+        </div>
+   
+        <footer>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <!-- Footer Column One Start -->
+                            <div class="footer-col first">
+                                <h5>About Us</h5>
+                                <ul class="list-unstyled li-space-lg p-small">
+                                    <li>Digital Food Bank strives to reduce food waste and food insecurity by enhancing the process of surplus food collection and distribution.</li>
+                                </ul>
+                            </div> 
+                            <!-- Footer Column One End -->
+
+                            <!-- Footer Column Two Start -->
+                            <div class="footer-col second ">
+                                <h5>Contact Information</h5>
+                                <ul class="list-unstyled li-space-lg p-small">
+                                    <li class="media">
+                                        <i class="fa fa-map-marker"></i>
+                                        <div class="media-body">2 Jalan Teknologi 5, Taman Teknologi Malaysia, 57000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur.</div>
+                                     </li>
+                                    <li class="media">
+                                        <i class="fa fa-envelope"></i>
+                                        <div class="media-body"><a href="#your-link">dfb.digitalfoodbank@gmail.com</a></div>
+                                    </li>
+                                    <li class="media">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="media-body"><a href="#your-link">03 2738 7739</a></div>
+                                    </li>
+                                </ul>
+                          </div>
+                          <!-- Footer Column Two End -->
+
+                          <!-- Footer Column Three Start -->
+                          <div class="footer-col third">
+                              <h5>Explore</h5>
+                              <ul class="list-unstyled li-space-lg p-small">
+                                  <li><a href="inventory.aspx">Inventory</a></li>
+                                  <li><a href="faqs.aspx">FAQs</a></li>
+                                  <li><a href="contact.aspx">Contact Us</a></li>
+                                  <li><a href="donate.aspx">Donate Now</a></li>
+                              </ul>
+                          </div> 
+                          <!-- Footer Column Three Start -->
+
+                          <!-- Footer Column Four Start -->
+                          <div class="footer-col fourth">
+                                <span class="fa-stack">
+                                    <a href="https://www.facebook.com">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook-f fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="https://www.instagram.com">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-instagram fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="https://www.whatsapp.com">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-whatsapp fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                            </div> 
+                            <!-- Footer Column Four End -->
+
+                            <p>All Rights Reserved. 
+                                <i class="fa fa-copyright"></i> 
+                                <%: DateTime.Now.Year %> - Yap Yan Yee
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JS Files -->
+        <script src="Customised_Design/Jquery/jquery.min.js"></script>
+        <script src="Customised_Design/JS/bootstrap.bundle.min.js"></script>
+        <script src="Customised_Design/JS/owl-carousel.js"></script>
+        <script src="Customised_Design/JS/animation.js"></script>
+        <script src="Customised_Design/JS/imagesloaded.js"></script>
+        <script src="Customised_Design/JS/custom.js"></script>
+
+    </form>
+</body>
+</html>
